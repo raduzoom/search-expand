@@ -1,6 +1,6 @@
 {
   "name": "search-expand",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "description": "an all purpose input multiselect with chips - includes search on the tooltip",
   "module": "dist/index.js",
   "types": "dist/dzs-search-expand.d.ts",
