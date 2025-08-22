@@ -9,7 +9,7 @@
 *** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
 *** See the bottom of this document for the declaration of the reference variables
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://github.com/raduzoom/dzs-chip-selector
+*** https://github.com/raduzoom/search-expand
 -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -29,14 +29,14 @@
   <p style="text-align: center">
     Chip selector 
     <br />
-    <a href="https://github.com/raduzoom/dzs-chip-selector" target="_blank"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/raduzoom/search-expand" target="_blank"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://raduzoom.github.io/dzs-chip-selector/demo.html" target="_blank">View Demo ( GitHub Pages )</a>
+    <a href="https://raduzoom.github.io/search-expand/demo.html" target="_blank">View Demo ( GitHub Pages )</a>
     ·
-    <a href="https://github.com/raduzoom/dzs-chip-selector/issues" target="_blank">Report Bug</a>
+    <a href="https://github.com/raduzoom/search-expand/issues" target="_blank">Report Bug</a>
     ·
-    <a href="https://github.com/raduzoom/dzs-chip-selector/issues" target="_blank">Request Feature</a>
+    <a href="https://github.com/raduzoom/search-expand/issues" target="_blank">Request Feature</a>
   </p>
 </div>
 
@@ -88,7 +88,7 @@ Clone the repository and install dependencies:
 * npm
 ```sh
   git clone <repo-url>
-  cd dzs-chip-selector
+  cd search-expand
   npm install
 ```
 Start the development build:
@@ -122,22 +122,22 @@ ____
 See the documentation in **README.md** and explore src/demo.html for practical examples.
 
 ## Important Files
-src/dzs-chip-selector/dzs-chip-selector.ts – main component class.
+src/search-expand/search-expand.ts – main component class.
 
-src/dzs-chip-selector/config/ – default configuration and class names.
+src/search-expand/config/ – default configuration and class names.
 
-src/dzs-chip-selector/js_common/ – shared DOM utilities.
+src/search-expand/js_common/ – shared DOM utilities.
 
-src/dzs-chip-selector/jsinc/ – event listeners and initial DOM setup.
+src/search-expand/jsinc/ – event listeners and initial DOM setup.
 
 Unit tests – located alongside the source files (*.spec.ts).
 
 ## Learning Next
-Examine the interface ChipSelectorOptions in src/dzs-chip-selector/dzs-chip-selector.type.ts for available settings.
+Examine the interface ChipSelectorOptions in src/search-expand/search-expand.type.ts for available settings.
 
-Review the SCSS themes under src/dzs-chip-selector/style/skins/ to customize the look and feel.
+Review the SCSS themes under src/search-expand/style/skins/ to customize the look and feel.
 
-Explore unit tests in src/dzs-chip-selector/*.spec.ts to understand expected behavior and how the component handles option updates and autocomplete filtering.
+Explore unit tests in src/search-expand/*.spec.ts to understand expected behavior and how the component handles option updates and autocomplete filtering.
 
 This overview should help newcomers quickly orient themselves in the codebase and know where to look for configuration, demos, and tests.
 ### Works With
@@ -176,7 +176,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/raduzoom/dzs-chip-selector
+   git clone https://github.com/raduzoom/search-expand
    ```
 2. Install NPM packages
    ```sh
@@ -266,7 +266,7 @@ The class also extends the HTMLElement interface to add a webComponent property 
 - [x] Add back to top links
 - [] Add Additional Templates w/ Examples
 
-See the [open issues](https://github.com/raduzoom/dzs-chip-selector/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/raduzoom/search-expand/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -315,7 +315,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@ZoomItFlash](https://twitter.com/ZoomItFlash) - email@example.com
 
-Project Link: [https://github.com/raduzoom/dzs-chip-selector#readme](https://github.com/raduzoom/dzs-chip-selector#readme)
+Project Link: [https://github.com/raduzoom/search-expand#readme](https://github.com/raduzoom/search-expand#readme)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -324,16 +324,16 @@ Project Link: [https://github.com/raduzoom/dzs-chip-selector#readme](https://git
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/raduzoom/dzs-chip-selector.svg?style=for-the-badge
-[contributors-url]: https://github.com/raduzoom/dzs-chip-selector/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/raduzoom/dzs-chip-selector.svg?style=for-the-badge
-[forks-url]: https://github.com/raduzoom/dzs-chip-selector/network/members
-[stars-shield]: https://img.shields.io/github/stars/raduzoom/dzs-chip-selector.svg?style=for-the-badge
-[stars-url]: https://github.com/raduzoom/dzs-chip-selector/stargazers
-[issues-shield]: https://img.shields.io/github/issues/raduzoom/dzs-chip-selector.svg?style=for-the-badge
-[issues-url]: https://github.com/raduzoom/dzs-chip-selector/issues
-[license-shield]: https://img.shields.io/github/license/raduzoom/dzs-chip-selector.svg?style=for-the-badge
-[license-url]: https://github.com/raduzoom/dzs-chip-selector/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/raduzoom/search-expand.svg?style=for-the-badge
+[contributors-url]: https://github.com/raduzoom/search-expand/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/raduzoom/search-expand.svg?style=for-the-badge
+[forks-url]: https://github.com/raduzoom/search-expand/network/members
+[stars-shield]: https://img.shields.io/github/stars/raduzoom/search-expand.svg?style=for-the-badge
+[stars-url]: https://github.com/raduzoom/search-expand/stargazers
+[issues-shield]: https://img.shields.io/github/issues/raduzoom/search-expand.svg?style=for-the-badge
+[issues-url]: https://github.com/raduzoom/search-expand/issues
+[license-shield]: https://img.shields.io/github/license/raduzoom/search-expand.svg?style=for-the-badge
+[license-url]: https://github.com/raduzoom/search-expand/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/radu-hulubas-809404222/
 [product-screenshot]: images/screenshot.png

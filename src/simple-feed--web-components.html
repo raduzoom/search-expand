@@ -116,48 +116,13 @@
       <br>
       <br>
       <br>
-      <dzs-chip-selector
-        data-chip-selector-options='{"inputPlaceholderText":"ceva"}'
-        data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
-        >
-        <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-default.css"/>
-      </dzs-chip-selector>
-
-      <br>
-      <br>
-      <dzs-chip-selector
-        data-chip-selector-options='{"inputPlaceholderText":"Custom placeholder ...", "viewSkin":"default--theme-dark"}'
-
-        data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
-        >
-        <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-default--theme-dark.css"/>
-      </dzs-chip-selector>
-      <br>
-      <br>
-      <dzs-chip-selector
-        data-chip-selector-options='{"inputPlaceholderText":"ceva", "viewSkin":"flat"}'
-        data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
-        >
-        <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-flat.css"/>
-      </dzs-chip-selector>
-      <br>
-      <br>
-      <dzs-chip-selector
-        data-chip-selector-options='{"inputPlaceholderText":"ceva", "viewSkin":"flat--theme-dark"}'
-        data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
-        >
-        <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-flat--theme-dark.css"/>
-      </dzs-chip-selector>
-
 
       <!--
       data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
       -->
 
       <script>
-        const $cs_ = document.body.querySelector('dzs-chip-selector');
-        console.log('hier2 - ', document.body.querySelector('dzs-chip-selector'));
-        $cs_.ceva = 'ceva';
+
 
       </script>
 
@@ -171,16 +136,7 @@
 </div>
 
 <script>
-  document.getElementById('remove-third-component').addEventListener('click', () => {
-    const components = document.querySelectorAll('dzs-chip-selector');
-    if (components.length >= 3) {
-      const third = components[2];
-      third.remove(); // triggers disconnectedCallback if implemented
-      console.log('✅ Removed 3rd dzs-chip-selector component:', third);
-    } else {
-      console.warn('⚠️ Less than 3 dzs-chip-selector components found');
-    }
-  });
+
 </script>
 
 <script>var exports = {}
