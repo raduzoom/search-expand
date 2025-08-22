@@ -22,10 +22,10 @@
     "build-ci": "webpack --config webpack.config.js --mode production && npm run ts-declarations && npm run rollup"
   },
   "keywords": [
-    "chips",
-    "input",
     "search",
-    "multiselect"
+    "input",
+    "expand",
+    "animation"
   ],
   "homepage": "https://digitalzoomstudio.net",
   "repository": {
