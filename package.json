@@ -1,9 +1,9 @@
 {
-  "name": "chip-selector",
+  "name": "search-expand",
   "version": "1.0.41",
   "description": "an all purpose input multiselect with chips - includes search on the tooltip",
   "module": "dist/index.js",
-  "types": "dist/dzs-chip-selector.d.ts",
+  "types": "dist/dzs-search-expand.d.ts",
   "files": [
     "dist",
     "!dist/dist"
@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jest",
     "dev-server": "tsc-watch --noClear -p ./tsconfig.json",
-    "build-ts": "tsc --out  final.js --module commonjs ./src/dzs-chip-selector/dzs-chip-selector.ts",
+    "build-ts": "tsc --out  final.js --module commonjs ./src/dzs-search-expand/dzs-search-expand.ts",
     "rollup": "rollup -c",
     "dev": "webpack --watch --config webpack.config.js --mode development --env demo_var=var",
     "dev-webserver": "webpack-dev-server --config webpack.config.js --mode development",
@@ -30,7 +30,7 @@
   "homepage": "https://digitalzoomstudio.net",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raduzoom/dzs-chip-selector"
+    "url": "git+https://github.com/raduzoom/search-expand"
   },
   "author": "raduzoom",
   "license": "(MIT OR Apache-2.0)",
