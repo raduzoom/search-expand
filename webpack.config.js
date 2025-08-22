@@ -3,15 +3,22 @@ const {resolve} = require('path')
 
 module.exports = (env, mod) => {
 
-
   let webpackConfig = {
     entry: {
       dzsSearchExpand: './src/dzs-search-expand/dzs-search-expand.ts',
       dzsSearchExpandWebComponents: './src/dzs-search-expand/dzs-search-expand--web-components.ts',
+      // Main entry point for both traditional and web component usage
+      'search-expand': './src/dzs-search-expand/index.ts',
     },
     output: {
       path: path.resolve(__dirname, 'dist-webpack'),
-      filename: '[name].js'
+      filename: '[name].js',
+      library: {
+        name: 'SearchExpand',
+        type: 'umd',
+        export: 'default',
+      },
+      globalObject: 'this',
     },
     devtool: 'eval-source-map',
     module: {
@@ -59,6 +66,9 @@ module.exports = (env, mod) => {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.scss'],
+    },
+    externals: {
+      // Add any external dependencies here if needed
     },
   };
 
