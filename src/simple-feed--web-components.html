@@ -1,0 +1,208 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>DzsCse - Web components</title>
+  <meta name="description" content="A simple HTML5 Template for new projects.">
+  <meta name="author" content="SitePoint">
+
+  <meta property="og:title" content="Chip selector">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Web components -> Chip selector">
+  <meta property="og:image" content="image.png">
+
+  <!--  <link rel="icon" href="/favicon.ico">-->
+  <!--  <link rel="icon" href="/favicon.svg" type="image/svg+xml">-->
+  <!--  <link rel="apple-touch-icon" href="/apple-touch-icon.png">-->
+
+  <!--  <link rel="stylesheet" href="css/styles.css?v=1.0">-->
+
+</head>
+
+<body>
+<!-- your content here... -->
+<script type="module">
+  class SearchExpand extends HTMLElement {
+    constructor() {
+      super();
+      const shadow = this.attachShadow({ mode: 'open' });
+
+      shadow.innerHTML = `
+          <style>
+            :host {
+              display: inline-block;
+              font-family: sans-serif;
+            }
+
+            .wrapper {
+              display: flex;
+              align-items: center;
+              background: white;
+              border-radius: 999px;
+              padding: 8px;
+              box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+              width: 40px;
+              height: 40px;
+              overflow: hidden;
+              transition: width 0.3s ease;
+              cursor: pointer;
+            }
+
+            .wrapper:hover,
+            .wrapper:focus-within {
+              width: 250px;
+            }
+
+            .icon {
+              width: 24px;
+              height: 24px;
+              margin-right: 8px;
+              flex-shrink: 0;
+              background: url('data:image/svg+xml;utf8,<svg fill="black" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M464,428,339.92,303.9a160.48,160.48,0,0,0,30.72-94.58C370.64,120.37,298.27,48,209.32,48S48,120.37,48,209.32s72.37,161.32,161.32,161.32a160.48,160.48,0,0,0,94.58-30.72L428,464ZM209.32,319.69A110.38,110.38,0,1,1,319.69,209.32,110.5,110.5,0,0,1,209.32,319.69Z"/></svg>') center/contain no-repeat;
+            }
+
+            input {
+              flex-grow: 1;
+              border: none;
+              outline: none;
+              font-size: 16px;
+              background: transparent;
+              opacity: 0;
+              width: 0;
+              transition: opacity 0.2s ease 0.2s, width 0.2s ease 0.2s;
+            }
+
+            .wrapper:hover input,
+            .wrapper:focus-within input {
+              width: 100%;
+              opacity: 1;
+            }
+          </style>
+
+          <div class="wrapper">
+            <div class="icon"></div>
+            <input type="text" placeholder="Search..." />
+          </div>
+        `;
+    }
+  }
+
+  customElements.define('search-expand', SearchExpand);
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+
+
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <div>
+        <search-expand></search-expand>
+        test after
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <dzs-chip-selector
+        data-chip-selector-options='{"inputPlaceholderText":"ceva"}'
+        data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
+        >
+        <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-default.css"/>
+      </dzs-chip-selector>
+
+      <br>
+      <br>
+      <dzs-chip-selector
+        data-chip-selector-options='{"inputPlaceholderText":"Custom placeholder ...", "viewSkin":"default--theme-dark"}'
+
+        data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
+        >
+        <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-default--theme-dark.css"/>
+      </dzs-chip-selector>
+      <br>
+      <br>
+      <dzs-chip-selector
+        data-chip-selector-options='{"inputPlaceholderText":"ceva", "viewSkin":"flat"}'
+        data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
+        >
+        <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-flat.css"/>
+      </dzs-chip-selector>
+      <br>
+      <br>
+      <dzs-chip-selector
+        data-chip-selector-options='{"inputPlaceholderText":"ceva", "viewSkin":"flat--theme-dark"}'
+        data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
+        >
+        <link rel="stylesheet" data-lazy-href="dzs-chip-selector/style/skins/skin-flat--theme-dark.css"/>
+      </dzs-chip-selector>
+
+
+      <!--
+      data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'
+      -->
+
+      <script>
+        const $cs_ = document.body.querySelector('dzs-chip-selector');
+        console.log('hier2 - ', document.body.querySelector('dzs-chip-selector'));
+        $cs_.ceva = 'ceva';
+
+      </script>
+
+      <br>
+      <div>
+
+      <button id="remove-third-component">Remove 3rd Component</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('remove-third-component').addEventListener('click', () => {
+    const components = document.querySelectorAll('dzs-chip-selector');
+    if (components.length >= 3) {
+      const third = components[2];
+      third.remove(); // triggers disconnectedCallback if implemented
+      console.log('✅ Removed 3rd dzs-chip-selector component:', third);
+    } else {
+      console.warn('⚠️ Less than 3 dzs-chip-selector components found');
+    }
+  });
+</script>
+
+<script>var exports = {}
+var require = () => {
+}</script>
+<!--<script src="../build/dzs-chip-selector/dzs-chip-selector.js" type="module"  ></script>-->
+<script src="../dist-webpack/dzsSearchExpandWebComponents.js"></script>
+<!--<script src="../final.js"  ></script>-->
+
+<link rel="stylesheet" href="style/bootstrap.min.css"/>
+
+<script>
+
+  // -- helper functions end
+</script>
+<script>
+
+  globalThis.dzsSearchExpandWebComponent_init();
+  // import {DzsChipSelector} from '../dist/bundle.js';
+
+
+
+</script>
+</body>
+</html>
