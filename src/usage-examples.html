@@ -53,9 +53,9 @@
     <div class="example-section">
         <h2 class="example-title">1. Traditional JavaScript/TypeScript Usage</h2>
         <p>Import and use the component programmatically with flexible styling:</p>
-        
+
         <div id="traditional-example"></div>
-        
+
         <div class="skin-controls">
             <strong>Change Skin:</strong>
             <button class="skin-button active" onclick="changeTraditionalSkin('default')">Default</button>
@@ -90,7 +90,7 @@ searchExpand.setSkin('flat');
     <div class="example-section">
         <h2 class="example-title">2. Web Component Usage</h2>
         <p>Use as a custom HTML element with attribute-based configuration:</p>
-        
+
         <div class="skin-controls">
             <strong>Change Skin:</strong>
             <button class="skin-button active" onclick="changeWebComponentSkin('default')">Default</button>
@@ -99,7 +99,7 @@ searchExpand.setSkin('flat');
             <button class="skin-button" onclick="changeWebComponentSkin('flat-dark')">Flat Dark</button>
         </div>
 
-        <dzs-search-expand 
+        <dzs-search-expand
             data-skin="default"
             data-persistentOptions='[
                 {"htmlContent":"Apple","value":"apple","currentStatus":"unchecked"},
@@ -110,7 +110,7 @@ searchExpand.setSkin('flat');
 
         <pre><code>
 &lt;!-- HTML with data attributes --&gt;
-&lt;dzs-search-expand 
+&lt;dzs-search-expand
     data-skin="default"
     data-persistentOptions='[...]'&gt;
 &lt;/dzs-search-expand&gt;
@@ -125,9 +125,9 @@ component.setSkin('flat');
     <div class="example-section">
         <h2 class="example-title">3. UMD Module Usage (Browser)</h2>
         <p>Use via script tag in browser without build tools:</p>
-        
+
         <div id="umd-example"></div>
-        
+
         <div class="skin-controls">
             <strong>Change Skin:</strong>
             <button class="skin-button active" onclick="changeUmDSkin('default')">Default</button>
@@ -157,9 +157,9 @@ searchExpand.setSkin('flat');
     <div class="example-section">
         <h2 class="example-title">4. Custom Styling with CSS Variables</h2>
         <p>Override styles using CSS custom properties:</p>
-        
+
         <div id="custom-styles-example"></div>
-        
+
         <style>
             #custom-styles-example {
                 --search-expand-primary-color: #e74c3c;
@@ -256,7 +256,8 @@ searchExpand.setSkin('flat');
     </script>
 
     <!-- Include the built component -->
-    <script src="../dist-webpack/search-expand.js"></script>
+    <script src="../dist/search-expand.js"></script>
+<!--    <script src="../dist-webpack/search-expand.js"></script>-->
     <script>
         // Initialize web components
         if (window.SearchExpand) {
