@@ -37,7 +37,7 @@
               font-family: sans-serif;
             }
 
-            .wrapper {
+            .search-expand--wrapper {
               display: flex;
               align-items: center;
               background: white;
@@ -51,12 +51,12 @@
               cursor: pointer;
             }
 
-            .wrapper:hover,
-            .wrapper:focus-within {
+            .search-expand--wrapper:hover,
+            .search-expand--wrapper:focus-within {
               width: 250px;
             }
 
-            .icon {
+            .search-expand--icon {
               width: 24px;
               height: 24px;
               margin-right: 8px;
@@ -75,15 +75,15 @@
               transition: opacity 0.2s ease 0.2s, width 0.2s ease 0.2s;
             }
 
-            .wrapper:hover input,
-            .wrapper:focus-within input {
+            .search-expand--wrapper:hover input,
+            .search-expand--wrapper:focus-within input {
               width: 100%;
               opacity: 1;
             }
           </style>
 
-          <div class="wrapper">
-            <div class="icon"></div>
+          <div class="search-expand--wrapper">
+            <div class="search-expand--icon"></div>
             <input type="text" placeholder="Search..." />
           </div>
         `;

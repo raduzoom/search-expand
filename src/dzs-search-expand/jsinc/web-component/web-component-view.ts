@@ -1,6 +1,6 @@
 import {DzsChipSelectorWrapper} from "../../dzs-search-expand--web-components";
 import styleChipTextContent from "../../dzs-search-expand.scss";
-import {ChipSelectorOptions} from "../../dzs-search-expand.type";
+import {SearchExpandOptions} from "../../dzs-search-expand.type";
 
 
 export const appendStyle = (dzsSearchExpandWrapper: DzsChipSelectorWrapper) => {
@@ -43,9 +43,9 @@ export const appendStyle = (dzsSearchExpandWrapper: DzsChipSelectorWrapper) => {
 }
 
 
-export const getChipSelectorOptions = (dzsSearchExpandWrapper: DzsChipSelectorWrapper): ChipSelectorOptions => {
+export const getChipSelectorOptions = (dzsSearchExpandWrapper: DzsChipSelectorWrapper): SearchExpandOptions => {
 
-    let chipSelectorOptions: ChipSelectorOptions = {};
+    let chipSelectorOptions: SearchExpandOptions = {};
 
 
     if (dzsSearchExpandWrapper.getAttribute('data-chip-selector-options')) {

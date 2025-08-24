@@ -1,4 +1,4 @@
-import {DzsChipSelector} from "../dzs-search-expand";
+import {DzsSearchExpand} from "../dzs-search-expand";
 import {insertHtml} from "../js_common/dzs_helpers";
 import {DZS_CHIP_SELECTOR_CSS_SELECTOR_OVERFLOW_TOOLTIP_CONTENT} from "../config/dzs-search-expand.config";
 import {ChipSelectorItem} from "../dzs-search-expand.type";
@@ -12,7 +12,7 @@ export function viewChipSelectorChipItemStructure(item: ChipSelectorItem) {
 </li>`;
 }
 
-export function chipSelectorInitStructure(selfInstance: DzsChipSelector) {
+export function chipSelectorInitStructure(selfInstance: DzsSearchExpand) {
 
 
   if (!selfInstance.$elem_.querySelector('.dzs-search-expand--container')) {
@@ -28,7 +28,7 @@ export function chipSelectorInitStructure(selfInstance: DzsChipSelector) {
   <span class="${DZS_CHIP_SELECTOR_CSS_SELECTOR_OVERFLOW_TOOLTIP_CONTENT}">This is the tooltip text</span></div>`;
 
     const chipListInputNewElement = `<label class="dzs-search-expand--input-new-element--label">
-              <input placeholder="${selfInstance.chipSelectorOptions.inputPlaceholderText}" class="dzs-search-expand--input-new-element"
+              <input placeholder="${selfInstance.searchExpandOptions.inputPlaceholderText}" class="dzs-search-expand--input-new-element"
                      autocomplete="off"
                      role="combobox" aria-autocomplete="list" aria-expanded="false"
                      aria-haspopup="listbox"
@@ -39,7 +39,7 @@ export function chipSelectorInitStructure(selfInstance: DzsChipSelector) {
     insertHtml(selfInstance.$elem_, `<div class="dzs-search-expand--container">
           <div class="dzs-search-expand--form-field">
             ${chipListString}
-            ${selfInstance.chipSelectorOptions.viewIsWrapping ? '' : chipListOverflowPlaceholder}
+            ${selfInstance.searchExpandOptions.viewIsWrapping ? '' : chipListOverflowPlaceholder}
             ${chipListInputNewElement}
           </div>
         </div>`)

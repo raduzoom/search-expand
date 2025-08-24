@@ -21,7 +21,7 @@ export function setupHandlers(selfInstance: DzsChipSelector) {
   // console.log('setupHandlers');
 
 
-  if(!selfInstance.chipSelectorOptions.viewIsWrapping){
+  if(!selfInstance.searchExpandOptions.viewIsWrapping){
 
     const resizeObserver = new ResizeObserver((entries) => {
       selfInstance.viewCheckIfNeedsWrapping(selfInstance);

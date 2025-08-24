@@ -1,22 +1,80 @@
 // Create a class for the element
 import {ChipSelectorItem} from "./dzs-search-expand.type";
-import {DzsChipSelector} from "./dzs-search-expand";
+import {DzsSearchExpand} from "./dzs-search-expand";
 import {DZS_CHIP_SELECTOR__CLASS_NAME__PRINCIPAL} from "./dzs-search-expand.config";
 import {appendStyle, getChipSelectorOptions} from "./jsinc/web-component/web-component-view";
 
-// Import all available skins
-import defaultSkin from "./style/skins/skin-default.scss";
-import flatSkin from "./style/skins/skin-flat.scss";
-import defaultDarkSkin from "./style/skins/skin-default--theme-dark.scss";
-import flatDarkSkin from "./style/skins/skin-flat--theme-dark.scss";
-
-// Skin registry
+// Dynamic skin registry - loads CSS files on-demand
 const SKIN_REGISTRY: Record<string, string> = {
-  'default': defaultSkin,
-  'flat': flatSkin,
-  'default-dark': defaultDarkSkin,
-  'flat-dark': flatDarkSkin,
+  'default': 'skin-default.css',
+  'flat': 'skin-flat.css',
+  'default-dark': 'skin-default--theme-dark.css',
+  'flat-dark': 'skin-flat--theme-dark.css',
 };
+
+// Cache for loaded skins to avoid duplicate requests
+const loadedSkins = new Set<string>();
+
+// Configuration for skin loading
+interface SkinLoadingConfig {
+  basePath?: string;
+  preloadSkins?: string[];
+}
+
+let skinConfig: SkinLoadingConfig = {
+  basePath: '/src/dzs-search-expand/style/skins/',
+  preloadSkins: ['default'] // Preload default skin
+};
+
+// Configure skin loading behavior
+export function configureWebComponentSkinLoading(config: SkinLoadingConfig): void {
+  skinConfig = { ...skinConfig, ...config };
+  
+  // Preload specified skins
+  if (config.preloadSkins) {
+    config.preloadSkins.forEach(skin => {
+      if (!loadedSkins.has(skin)) {
+        loadSkin(skin);
+      }
+    });
+  }
+}
+
+// Function to load skin dynamically
+async function loadSkin(skinName: string): Promise<void> {
+  if (!SKIN_REGISTRY[skinName]) {
+    console.warn(`Skin "${skinName}" not found. Available skins:`, Object.keys(SKIN_REGISTRY));
+    return;
+  }
+
+  // Check if already loaded
+  if (loadedSkins.has(skinName)) {
+    return;
+  }
+
+  const cssFile = SKIN_REGISTRY[skinName];
+  const cssPath = `${skinConfig.basePath}${cssFile}`;
+
+  try {
+    // Load CSS file dynamically
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = cssPath;
+    
+    // Wait for CSS to load
+    await new Promise<void>((resolve, reject) => {
+      link.onload = () => {
+        loadedSkins.add(skinName);
+        resolve();
+      };
+      link.onerror = () => reject(new Error(`Failed to load skin: ${skinName}`));
+      document.head.appendChild(link);
+    });
+  } catch (error) {
+    console.error(`Error loading skin "${skinName}":`, error);
+  }
+}
 
 declare global {
   interface Window {
@@ -58,10 +116,12 @@ export class DzsChipSelectorWrapper extends HTMLElement {
   }
 
   // Method to change skin dynamically
-  setSkin(skinName: string) {
+  async setSkin(skinName: string) {
     if (SKIN_REGISTRY[skinName]) {
+      // Load the skin CSS if not already loaded
+      await loadSkin(skinName);
+      
       this.currentSkin = skinName;
-      this.updateStyles();
       this.renderComponent();
     } else {
       console.warn(`Skin "${skinName}" not found. Available skins:`, Object.keys(SKIN_REGISTRY));
@@ -76,20 +136,6 @@ export class DzsChipSelectorWrapper extends HTMLElement {
   // Method to get available skins
   static getAvailableSkins(): string[] {
     return Object.keys(SKIN_REGISTRY);
-  }
-
-  private updateStyles() {
-    // Remove existing skin styles
-    const existingSkinStyles = this.shadow.querySelectorAll('style[data-skin]');
-    existingSkinStyles.forEach(style => style.remove());
-
-    // Add new skin styles
-    if (SKIN_REGISTRY[this.currentSkin]) {
-      const skinStyle = document.createElement('style');
-      skinStyle.setAttribute('data-skin', this.currentSkin);
-      skinStyle.textContent = SKIN_REGISTRY[this.currentSkin];
-      this.shadow.appendChild(skinStyle);
-    }
   }
 
   disconnectedCallback() {
@@ -115,7 +161,7 @@ export class DzsChipSelectorWrapper extends HTMLElement {
         console.log(selectedOptions)
       };
 
-      new DzsChipSelector(this.wrapper.querySelector(`.${DZS_CHIP_SELECTOR__CLASS_NAME__PRINCIPAL}`) as HTMLElement, chipSelectorOptions);
+      new DzsSearchExpand(this.wrapper.querySelector(`.${DZS_CHIP_SELECTOR__CLASS_NAME__PRINCIPAL}`) as HTMLElement, chipSelectorOptions);
     }
   }
 
@@ -123,7 +169,10 @@ export class DzsChipSelectorWrapper extends HTMLElement {
    * called on connected
    */
   connectedCallback() {
-    this.renderComponent();
+    // Load the default skin if not already loaded
+    loadSkin(this.currentSkin).then(() => {
+      this.renderComponent();
+    });
   }
 
   // Observe attribute changes for dynamic skin switching

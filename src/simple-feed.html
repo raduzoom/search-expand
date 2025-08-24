@@ -108,24 +108,15 @@
           <br>
 
           <h4>Skin default - theme dark</h4>
-          <div id="def-dark" class="dzs-chip-selector dzs-chip-selector--skin-default--theme-dark"
-               data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'>
-          </div>
-          <br>
-          <br>
 
-          <h4>Skin flat - theme dark</h4>
-          <div style="width: 300px">
-          <div id="flat-dark" class="dzs-chip-selector dzs-chip-selector--skin-flat--theme-dark"
-               data-persistentOptions='[{"htmlContent":"Apple ","value":"apple","currentStatus":"unchecked"},{"htmlContent":"Orange ","value":"orange","currentStatus":"checked"},{"htmlContent":"<span>Apricot</span> ","value":"apricot","currentStatus":"unchecked"}]'>
+          <div class="search-expand auto-init">
           </div>
-          </div>
-          <br>
-          <br>
-
-          <br>
-          <br>
         </div>
+        <br>
+        <br>
+
+        <br>
+        <br>
       </div>
     </div>
   </div>
@@ -176,6 +167,19 @@ var require = () => {
     console.log('doc ready');
 
 
+
+      window.dzs_initDzsSearchExpand(document.querySelector('.search-expand.auto-init'), {
+        /**
+         *
+         * @param {ChipSelectorItem[]} allOptions
+         */
+        onUpdateFunction: (allOptions) => {
+          const selectedOptions = allOptions.filter((el) => el.currentStatus === 'checked');
+          console.log({selectedOptions});
+        }
+      })
+
+
   })
 </script>
 
@@ -192,10 +196,6 @@ var require = () => {
 
 <link rel="stylesheet" href="style/table-for-jsDoc.css"/>
 <link rel="stylesheet" href="style/bootstrap.min.css"/>
-<link rel="stylesheet" href="dzs-chip-selector/dzs-chip-selector.css"/>
-<link rel="stylesheet" href="dzs-chip-selector/style/skins/skin-default.css"/>
-<link rel="stylesheet" href="dzs-chip-selector/style/skins/skin-default--theme-dark.css"/>
-<link rel="stylesheet" href="dzs-chip-selector/style/skins/skin-flat.css"/>
-<link rel="stylesheet" href="dzs-chip-selector/style/skins/skin-flat--theme-dark.css"/>
+
 </body>
 </html>

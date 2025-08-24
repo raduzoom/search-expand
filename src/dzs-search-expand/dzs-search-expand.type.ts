@@ -1,5 +1,5 @@
 
-export type ChipSelectorOptions = {
+export type SearchExpandOptions = {
   /** text for no items found */
   placeholderNoItemsFound?: string,
   /** include a middleware function like filtering the results */

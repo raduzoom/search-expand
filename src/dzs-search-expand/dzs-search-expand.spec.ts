@@ -1,4 +1,4 @@
-import {ChipSelectorOptions, currentStatusType} from "./dzs-search-expand.type";
+import {SearchExpandOptions, currentStatusType} from "./dzs-search-expand.type";
 import {DzsChipSelector} from "./dzs-search-expand";
 import {dzsSearchExpandDefaultOptions} from "./config/dzs-search-expand--defaultOptions";
 
@@ -8,7 +8,7 @@ class ResizeObserver {
 }
 describe('DzsChipSelector', () => {
   let $elem: HTMLElement;
-  let chipSelectorOptions: ChipSelectorOptions;
+  let chipSelectorOptions: SearchExpandOptions;
   let dzsSearchExpand: DzsChipSelector;
   beforeEach(() => {
     $elem = document.createElement('div');
@@ -67,7 +67,7 @@ describe('DzsChipSelector', () => {
       value: 'test1',
       currentStatus: currentStatusType.CHECKED
     }, {htmlContent: 'Test2', value: 'test2', currentStatus: currentStatusType.UNCHECKED}];
-    dzsSearchExpand.chipSelectorOptions.viewIsWrapping = false;
+    dzsSearchExpand.searchExpandOptions.viewIsWrapping = false;
     dzsSearchExpand.initClass();
     dzsSearchExpand.updateChipsFromOptions();
     jest.spyOn(globalThis, 'getComputedStyle');

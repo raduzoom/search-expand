@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Skin Loading Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .controls {
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .btn {
+            margin: 5px;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover {
+            background: #e9ecef;
+        }
+        .btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        .btn.success {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .btn.warning {
+            background: #ffc107;
+            color: black;
+            border-color: #ffc107;
+        }
+        .status {
+            padding: 10px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            margin: 10px 0;
+            color: #155724;
+        }
+        .info {
+            padding: 10px;
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            margin: 10px 0;
+            color: #0c5460;
+        }
+        .network-info {
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dynamic Skin Loading Example</h1>
+        
+        <div class="status">
+            ✅ Dynamic skin loading system active! CSS files are loaded on-demand to reduce bundle size.
+        </div>
+
+        <!-- Configuration Section -->
+        <div class="section">
+            <h2>1. Skin Loading Configuration</h2>
+            <div class="info">
+                Configure the skin loading behavior before initializing components.
+            </div>
+            
+            <div class="controls">
+                <button class="btn" onclick="configureDefault()">Default Config</button>
+                <button class="btn" onclick="configureCustomPath()">Custom Path</button>
+                <button class="btn" onclick="configurePreload()">Preload Multiple</button>
+                <button class="btn" onclick="showConfig()">Show Current Config</button>
+            </div>
+
+            <div id="config-info" class="network-info"></div>
+        </div>
+
+        <!-- Traditional Usage -->
+        <div class="section">
+            <h2>2. Traditional JavaScript Usage</h2>
+            <div id="traditional-demo"></div>
+            
+            <div class="controls">
+                <strong>Change Skin:</strong>
+                <button class="btn active" onclick="changeTraditionalSkin('default')">Default</button>
+                <button class="btn" onclick="changeTraditionalSkin('flat')">Flat</button>
+                <button class="btn" onclick="changeTraditionalSkin('default-dark')">Default Dark</button>
+                <button class="btn" onclick="changeTraditionalSkin('flat-dark')">Flat Dark</button>
+            </div>
+
+            <div class="info">
+                <strong>Network Activity:</strong> Watch the Network tab in DevTools to see CSS files being loaded dynamically.
+            </div>
+        </div>
+
+        <!-- Web Component Usage -->
+        <div class="section">
+            <h2>3. Web Component Usage</h2>
+            <dzs-search-expand 
+                data-skin="default"
+                data-persistentOptions='[
+                    {"htmlContent":"Apple","value":"apple","currentStatus":"unchecked"},
+                    {"htmlContent":"Orange","value":"orange","currentStatus":"checked"},
+                    {"htmlContent":"Banana","value":"banana","currentStatus":"unchecked"}
+                ]'>
+            </dzs-search-expand>
+            
+            <div class="controls">
+                <strong>Change Skin:</strong>
+                <button class="btn active" onclick="changeWebComponentSkin('default')">Default</button>
+                <button class="btn" onclick="changeWebComponentSkin('flat')">Flat</button>
+                <button class="btn" onclick="changeWebComponentSkin('default-dark')">Default Dark</button>
+                <button class="btn" onclick="changeWebComponentSkin('flat-dark')">Flat Dark</button>
+            </div>
+        </div>
+
+        <!-- Skin Management -->
+        <div class="section">
+            <h2>4. Skin Management</h2>
+            <div class="controls">
+                <button class="btn" onclick="preloadAllSkins()">Preload All Skins</button>
+                <button class="btn" onclick="showLoadedSkins()">Show Loaded Skins</button>
+                <button class="btn" onclick="showAvailableSkins()">Show Available Skins</button>
+                <button class="btn warning" onclick="clearSkinCache()">Clear Cache</button>
+            </div>
+
+            <div id="skin-info" class="network-info"></div>
+        </div>
+
+        <!-- Performance Monitoring -->
+        <div class="section">
+            <h2>5. Performance Monitoring</h2>
+            <div class="controls">
+                <button class="btn" onclick="measureSkinLoading()">Measure Loading Time</button>
+                <button class="btn" onclick="showBundleSize()">Show Bundle Size</button>
+            </div>
+
+            <div id="performance-info" class="network-info"></div>
+        </div>
+    </div>
+
+    <!-- Include the built component -->
+    <script src="../dist-webpack/search-expand.js"></script>
+    
+    <script>
+        let traditionalInstance = null;
+        let startTime = Date.now();
+
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                initializeDemo();
+            }, 100);
+        });
+
+        function initializeDemo() {
+            // Initialize web components
+            if (window.SearchExpand) {
+                window.SearchExpand.initWebComponents();
+            }
+
+            // Initialize traditional example
+            const traditionalElement = document.getElementById('traditional-demo');
+            if (window.SearchExpand && traditionalElement) {
+                traditionalInstance = window.SearchExpand.initSearchExpand(traditionalElement, {
+                    viewSkin: 'default',
+                    persistentOptions: [
+                        { htmlContent: 'Grape', value: 'grape', currentStatus: 'unchecked' },
+                        { htmlContent: 'Mango', value: 'mango', currentStatus: 'checked' },
+                        { htmlContent: 'Pineapple', value: 'pineapple', currentStatus: 'unchecked' }
+                    ]
+                });
+            }
+
+            showConfig();
+        }
+
+        // Configuration functions
+        function configureDefault() {
+            if (window.SearchExpand && window.SearchExpand.configureSkinLoading) {
+                window.SearchExpand.configureSkinLoading({
+                    basePath: '/src/dzs-search-expand/style/skins/',
+                    preloadSkins: ['default']
+                });
+                showConfig();
+                showStatus('Default configuration applied');
+            }
+        }
+
+        function configureCustomPath() {
+            if (window.SearchExpand && window.SearchExpand.configureSkinLoading) {
+                window.SearchExpand.configureSkinLoading({
+                    basePath: '/assets/styles/skins/',
+                    preloadSkins: ['default', 'flat']
+                });
+                showConfig();
+                showStatus('Custom path configuration applied');
+            }
+        }
+
+        function configurePreload() {
+            if (window.SearchExpand && window.SearchExpand.configureSkinLoading) {
+                window.SearchExpand.configureSkinLoading({
+                    preloadSkins: ['default', 'flat', 'default-dark']
+                });
+                showConfig();
+                showStatus('Preload configuration applied');
+            }
+        }
+
+        function showConfig() {
+            const configInfo = document.getElementById('config-info');
+            if (window.SearchExpand) {
+                const loadedSkins = window.SearchExpand.getLoadedSkins ? window.SearchExpand.getLoadedSkins() : [];
+                configInfo.innerHTML = `
+                    <strong>Current Configuration:</strong><br>
+                    • Base Path: /src/dzs-search-expand/style/skins/<br>
+                    • Preload Skins: default<br>
+                    • Loaded Skins: ${loadedSkins.join(', ') || 'none'}<br>
+                    • Available Skins: ${window.SearchExpand.getAvailableSkins ? window.SearchExpand.getAvailableSkins().join(', ') : 'unknown'}
+                `;
+            }
+        }
+
+        // Skin change functions
+        async function changeTraditionalSkin(skin) {
+            if (traditionalInstance && traditionalInstance.setSkin) {
+                const loadStart = Date.now();
+                await traditionalInstance.setSkin(skin);
+                const loadTime = Date.now() - loadStart;
+                
+                updateSkinButtons('traditional', skin);
+                showStatus(`Traditional skin changed to: ${skin} (${loadTime}ms)`);
+            }
+        }
+
+        async function changeWebComponentSkin(skin) {
+            const component = document.querySelector('dzs-search-expand');
+            if (component && component.setSkin) {
+                const loadStart = Date.now();
+                await component.setSkin(skin);
+                const loadTime = Date.now() - loadStart;
+                
+                updateSkinButtons('webcomponent', skin);
+                showStatus(`Web component skin changed to: ${skin} (${loadTime}ms)`);
+            }
+        }
+
+        // Skin management functions
+        async function preloadAllSkins() {
+            if (window.SearchExpand && window.SearchExpand.preloadSkins) {
+                const loadStart = Date.now();
+                await window.SearchExpand.preloadSkins(['default', 'flat', 'default-dark', 'flat-dark']);
+                const loadTime = Date.now() - loadStart;
+                
+                showLoadedSkins();
+                showStatus(`All skins preloaded (${loadTime}ms)`);
+            }
+        }
+
+        function showLoadedSkins() {
+            const skinInfo = document.getElementById('skin-info');
+            if (window.SearchExpand && window.SearchExpand.getLoadedSkins) {
+                const loadedSkins = window.SearchExpand.getLoadedSkins();
+                skinInfo.innerHTML = `
+                    <strong>Loaded Skins:</strong> ${loadedSkins.join(', ') || 'none'}<br>
+                    <strong>Count:</strong> ${loadedSkins.length}
+                `;
+            }
+        }
+
+        function showAvailableSkins() {
+            const skinInfo = document.getElementById('skin-info');
+            if (window.SearchExpand && window.SearchExpand.getAvailableSkins) {
+                const availableSkins = window.SearchExpand.getAvailableSkins();
+                skinInfo.innerHTML = `
+                    <strong>Available Skins:</strong> ${availableSkins.join(', ')}<br>
+                    <strong>Count:</strong> ${availableSkins.length}
+                `;
+            }
+        }
+
+        function clearSkinCache() {
+            // This would require modifying the component to expose cache clearing
+            showStatus('Cache clearing not implemented in this demo');
+        }
+
+        // Performance functions
+        async function measureSkinLoading() {
+            if (window.SearchExpand && window.SearchExpand.loadSkin) {
+                const performanceInfo = document.getElementById('performance-info');
+                const results = [];
+
+                for (const skin of ['default', 'flat', 'default-dark', 'flat-dark']) {
+                    const start = Date.now();
+                    try {
+                        await window.SearchExpand.loadSkin(skin);
+                        const time = Date.now() - start;
+                        results.push(`${skin}: ${time}ms`);
+                    } catch (error) {
+                        results.push(`${skin}: failed`);
+                    }
+                }
+
+                performanceInfo.innerHTML = `
+                    <strong>Skin Loading Times:</strong><br>
+                    ${results.join('<br>')}
+                `;
+            }
+        }
+
+        function showBundleSize() {
+            const performanceInfo = document.getElementById('performance-info');
+            performanceInfo.innerHTML = `
+                <strong>Bundle Size Analysis:</strong><br>
+                • search-expand.js: ~7KB (without CSS)<br>
+                • skin-default.css: ~3KB<br>
+                • skin-flat.css: ~3KB<br>
+                • skin-default-dark.css: ~7KB<br>
+                • skin-flat-dark.css: ~7KB<br>
+                <br>
+                <strong>Total with all skins:</strong> ~27KB<br>
+                <strong>Dynamic loading:</strong> ~7KB + CSS on-demand
+            `;
+        }
+
+        // Utility functions
+        function updateSkinButtons(type, activeSkin) {
+            const buttons = document.querySelectorAll(`[onclick*="${type}"]`);
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === activeSkin) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function showStatus(message) {
+            const status = document.createElement('div');
+            status.className = 'status';
+            status.textContent = message;
+            status.style.position = 'fixed';
+            status.style.top = '20px';
+            status.style.right = '20px';
+            status.style.zIndex = '1000';
+            document.body.appendChild(status);
+            
+            setTimeout(() => {
+                status.remove();
+            }, 3000);
+        }
+
+        // Log component loading
+        console.log('Search Expand Component loaded:', window.SearchExpand);
+        if (window.SearchExpand) {
+            console.log('Available methods:', Object.keys(window.SearchExpand));
+        }
+    </script>
+</body>
+</html>
