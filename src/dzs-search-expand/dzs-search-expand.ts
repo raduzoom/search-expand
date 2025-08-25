@@ -1,6 +1,7 @@
 
 import {SearchExpandOptions} from "./dzs-search-expand.type";
 import {dzsSearchExpandDefaultOptions} from "./config/dzs-search-expand--defaultOptions";
+import {searchExpandView_initStructure} from "./jsinc/searchExpandViewConstructStructure";
 
 
 declare global {
@@ -43,11 +44,12 @@ export class DzsSearchExpand {
 
   initClass() {
     console.log('initClass');
+
+    searchExpandView_initStructure(this);
   }
 
   reinit() {
     const selfInstance = this;
-
   }
 
 
