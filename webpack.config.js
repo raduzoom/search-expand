@@ -1,5 +1,6 @@
 const path = require('path');
 const {resolve} = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, mod) => {
 
@@ -9,6 +10,8 @@ module.exports = (env, mod) => {
       dzsSearchExpandWebComponents: './src/dzs-search-expand/dzs-search-expand--web-components.ts',
       // Main entry point for both traditional and web component usage
       'search-expand': './src/dzs-search-expand/index.ts',
+      // SCSS entry to emit standalone CSS file
+      'dzs-search-expand': './src/dzs-search-expand/dzs-search-expand.scss',
     },
     output: {
       path: path.resolve(__dirname, 'dist-webpack'),
@@ -23,8 +26,47 @@ module.exports = (env, mod) => {
     devtool: 'eval-source-map',
     module: {
       rules: [
+        // Allow dzs-search-expand.scss to be used two ways:
+        // - as an entry (extracted to CSS)
+        // - imported from TS files as a raw string (for web components)
+        {
+          test: /dzs-search-expand\.scss$/,
+          oneOf: [
+            // When imported from TS/JS, keep it as raw string
+            {
+              issuer: /\.[jt]s$/,
+              use: [
+                'raw-loader',
+                {
+                  loader: 'sass-loader',
+                  options: {
+                    sassOptions: {}
+                  }
+                }
+              ]
+            },
+            // Otherwise (e.g., as direct entry), extract to CSS
+            {
+              use: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: 'css-loader',
+                  options: { sourceMap: true }
+                },
+                {
+                  loader: 'sass-loader',
+                  options: {
+                    sassOptions: {}
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        // Keep importing other SCSS as raw strings for JS usage (e.g., web components)
         {
           test: /\.scss$/,
+          exclude: /dzs-search-expand\.scss$/,
           use: [
             'raw-loader',
             {
@@ -48,6 +90,9 @@ module.exports = (env, mod) => {
         },
       ],
     },
+    plugins: [
+      new MiniCssExtractPlugin({ filename: '[name].css' })
+    ],
     devServer: {
       client: {
         logging: 'info',
@@ -72,7 +117,7 @@ module.exports = (env, mod) => {
     },
   };
 
-  if (mod.mode == 'production') {
+  if (mod.mode === 'production') {
     webpackConfig.devtool = 'source-map';
     webpackConfig.devServer = undefined;
     webpackConfig.optimization = {

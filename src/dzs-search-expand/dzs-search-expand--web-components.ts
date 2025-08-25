@@ -29,7 +29,7 @@ let skinConfig: SkinLoadingConfig = {
 // Configure skin loading behavior
 export function configureWebComponentSkinLoading(config: SkinLoadingConfig): void {
   skinConfig = { ...skinConfig, ...config };
-  
+
   // Preload specified skins
   if (config.preloadSkins) {
     config.preloadSkins.forEach(skin => {
@@ -61,7 +61,7 @@ async function loadSkin(skinName: string): Promise<void> {
     link.rel = 'stylesheet';
     link.type = 'text/css';
     link.href = cssPath;
-    
+
     // Wait for CSS to load
     await new Promise<void>((resolve, reject) => {
       link.onload = () => {
@@ -111,7 +111,7 @@ export class DzsChipSelectorWrapper extends HTMLElement {
 
     // Get skin from attribute
     this.currentSkin = this.getAttribute('data-skin') || 'default';
-    
+
     appendStyle(this);
   }
 
@@ -120,7 +120,7 @@ export class DzsChipSelectorWrapper extends HTMLElement {
     if (SKIN_REGISTRY[skinName]) {
       // Load the skin CSS if not already loaded
       await loadSkin(skinName);
-      
+
       this.currentSkin = skinName;
       this.renderComponent();
     } else {
@@ -152,7 +152,7 @@ export class DzsChipSelectorWrapper extends HTMLElement {
 
     if ($chipSelector) {
       const chipSelectorOptions = getChipSelectorOptions(this);
-      
+
       // Override skin with current skin
       chipSelectorOptions.viewSkin = this.currentSkin;
 
