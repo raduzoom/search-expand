@@ -19,9 +19,10 @@ export function searchExpandView_initStructure(selfInstance: DzsSearchExpand) {
   if (!selfInstance.$elem_.querySelector('.search-expand--wrapper')) {
 
     const newStructure = `<div class="search-expand--wrapper">
+<div class="search-expand--wrapper--inner">
             <div class="search-expand--icon"></div>
-            <input type="text" placeholder="Search..." />
-          </div>`
+            <input class="search-expand--input" type="text" placeholder="Search..." />
+          </div></div>`
 
     insertHtml(selfInstance.$elem_, newStructure)
 

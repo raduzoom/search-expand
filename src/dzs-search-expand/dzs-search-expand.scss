@@ -1,5 +1,11 @@
 @import "TOKENS";
 
+:root{
+  --search-expand-icon-size: 24px;
+  --search-expand-wrapper-padding: 8px;
+  --search-expand-color-wrapper-bg: #ffffff;
+  --search-expand-color-text: #222;
+}
 
 
 :host {
@@ -14,17 +20,21 @@
   }
 }
 .search-expand--wrapper {
-  display: flex;
-  align-items: center;
-  background: white;
-  border-radius: 999px;
-  padding: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
   width: 40px;
   height: 40px;
-  overflow: hidden;
-  transition: width 0.3s ease;
-  cursor: pointer;
+  transition: width 0.3s ease-out;
+  >&--inner{
+
+    display: flex;
+    align-items: center;
+    background-color: var(--search-expand-color-wrapper-bg);
+    border-radius: 999px;
+    padding: var(--search-expand-wrapper-padding);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    cursor: pointer;
+  }
 
   &:hover,
   &:focus-within {
@@ -35,28 +45,31 @@
 
 $iconSize: 24px;
 .search-expand--icon {
-  width: $iconSize;
-  height: $iconSize;
+  width: var(--search-expand-icon-size);
+  height: var(--search-expand-icon-size);
   margin-right: 8px;
   flex-shrink: 0;
   background: url('data:image/svg+xml;utf8,<svg fill="black" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M464,428,339.92,303.9a160.48,160.48,0,0,0,30.72-94.58C370.64,120.37,298.27,48,209.32,48S48,120.37,48,209.32s72.37,161.32,161.32,161.32a160.48,160.48,0,0,0,94.58-30.72L428,464ZM209.32,319.69A110.38,110.38,0,1,1,319.69,209.32,110.5,110.5,0,0,1,209.32,319.69Z"/></svg>')
   center/contain no-repeat;
 }
 
+
+// -- the input
 input.search-expand--input {
   flex-grow: 1;
   border: none;
   outline: none;
   font-size: 16px;
   background: transparent;
-  opacity: 0;
+  opacity: 1;
   width: 0;
-  transition: opacity 0.2s ease 0.2s, width 0.2s ease 0.2s;
+
+  color: var(--search-expand-color-text);
+  transition: width 0.2s ease 0.2s;
 
   .search-expand--wrapper:hover &,
   .search-expand--wrapper:focus-within & {
     width: 100%;
-    opacity: 1;
   }
 }
 
