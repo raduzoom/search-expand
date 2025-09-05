@@ -90,6 +90,28 @@ export default [
     ],
   },
 
+  // Styles extraction: compile SCSS to plain CSS in dist/
+  {
+    input: 'src/dzs-search-expand/styles-entry.js',
+    output: {
+      file: 'dist/dzs-search-expand.styles.js',
+      format: 'es',
+    },
+    plugins: [
+      postcss({
+        extract: 'dzs-search-expand.css',
+        sourceMap: false,
+        minimize: false,
+        extensions: ['.scss'],
+        use: {
+          sass: {
+            includePaths: ['src/dzs-search-expand']
+          }
+        }
+      })
+    ]
+  },
+
   // UMD
   {
     input: 'src/dzs-search-expand/dzs-search-expand.ts',
