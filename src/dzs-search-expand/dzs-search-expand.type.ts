@@ -1,19 +1,21 @@
 
 export type SearchExpandOptions = {
   /** text for no items found */
-  placeholderNoItemsFound?: string,
+  placeholderNoItemsFound?: string;
   /** include a middleware function like filtering the results */
-  middlewareFilterResults?: any,
+  middlewareFilterResults?: any;
   /** the skin can be "skin-default", "skin-flat" - also needs css file being loaded */
-  viewSkin?: string,
+  viewSkin?: string;
   /** the placeholder for Filter Results ... text */
-  inputPlaceholderText?: string,
+  inputPlaceholderText?: string;
   /** custom function for onUpdate */
   onUpdateFunction?: (...args: any[]) => any;
   /** wrap false or true */
-  viewIsWrapping?: boolean,
+  viewIsWrapping?: boolean;
   /** the persistent options */
-  persistentOptions?: ChipSelectorItem[]
+  persistentOptions?: ChipSelectorItem[];
+  /** called when submitting via icon click or Enter key */
+  onSubmitSearch?: (query: string) => void | Promise<void>;
 };
 
 

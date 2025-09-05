@@ -11,4 +11,5 @@ export const dzsSearchExpandDefaultOptions: SearchExpandOptions = {
   middlewareFilterResults: null,
   viewSkin: 'default',
   viewIsWrapping: true,
+  onSubmitSearch: undefined,
 };

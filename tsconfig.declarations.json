@@ -16,6 +16,11 @@
     "module": "es2020"
   },
   "include": [
-    "src/**/*", "declarations.d.ts"
+    "src/**/*",
+    "declarations.d.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/dzs-search-expand/jsinc/chipSelectorHandlers.ts"
   ]
 }
