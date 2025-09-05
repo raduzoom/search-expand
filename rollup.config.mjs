@@ -25,7 +25,7 @@ export default [
         targets: [
           { src: 'src/dzs-search-expand/style/skins', dest: 'dist/style' },
           { src: 'src/dzs-search-expand/style/skins', dest: 'dist/dzs-search-expand/style' },
-          { src: ['src/dzs-search-expand/dzs-search-expand.css', 'src/style/table-for-jsDoc.css', 'src/style/bootstrap.min.css'], dest: 'dist/style' },
+          { src: ['src/style/table-for-jsDoc.css', 'src/style/bootstrap.min.css'], dest: 'dist/style' },
         ]}),
       terser(),
     ],
@@ -101,7 +101,7 @@ export default [
       postcss({
         extract: 'dzs-search-expand.css',
         sourceMap: false,
-        minimize: false,
+        minimize: true,
         extensions: ['.scss'],
         use: {
           sass: {
