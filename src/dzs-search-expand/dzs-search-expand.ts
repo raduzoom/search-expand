@@ -43,7 +43,8 @@ export class DzsSearchExpand {
   }
 
   initClass() {
-    console.log('initClass');
+
+    this.$elem_.classList.add('se-inited');
 
     searchExpandView_initStructure(this);
   }
