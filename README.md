@@ -1,553 +1,154 @@
-<div id="top"></div>
+## Search Expand
 
+Compact, animated search input that expands on focus/hover. Ships as a Web Component and a class-based API, with dynamic skin loading and CSS variables for flexible theming.
 
+- **Package**: `search-expand`
+- **Builds**: ESM/CJS via `dist/index.js`, UMD via `dist-webpack/search-expand.js`
+- **Homepage**: `https://digitalzoomstudio.net`
 
+### Features
+- **Two usage modes**: programmatic API or `<dzs-search-expand>` web component
+- **Skins**: `default`, `flat`, `default-dark`, `flat-dark` with dynamic loading
+- **CSS variables** for quick theming
+- **TypeScript types** included
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://github.com/raduzoom/search-expand
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
+form:
+![skin-default](https://private-user-images.githubusercontent.com/58981243/491676373-d99d0dde-f857-41a5-845c-f23750b0cf12.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTgyOTY1NjgsIm5iZiI6MTc1ODI5NjI2OCwicGF0aCI6Ii81ODk4MTI0My80OTE2NzYzNzMtZDk5ZDBkZGUtZjg1Ny00MWE1LTg0NWMtZjIzNzUwYjBjZjEyLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA5MTklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwOTE5VDE1Mzc0OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTUyZDIyOGIxMzJjZmRmZmVhZDgyYmRmMDc4NmZkOTViYzNjYjM4ZjI1M2M2YmZmMGUzNzJmNTdmOGEwZWQzMmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.qyW6W6cQf9LXJwsw6zE0nU6rd_qMHktfx1JZkxVql7o "Search expand")
 
+expanded:
+![skin-default](https://private-user-images.githubusercontent.com/58981243/491676470-06cce1cb-a9c1-4484-8ca0-c665c72e5ce0.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTgyOTY2MDAsIm5iZiI6MTc1ODI5NjMwMCwicGF0aCI6Ii81ODk4MTI0My80OTE2NzY0NzAtMDZjY2UxY2ItYTljMS00NDg0LThjYTAtYzY2NWM3MmU1Y2UwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA5MTklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwOTE5VDE1MzgyMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU4MWQ2Y2E3YzA2ZGNkMDA0NmJiMDgxNWNhZjNmZTU1MWU1YWFhN2U4NjM2MjEwMDg1M2I1ZTYxZTk1OThmZmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.1rMI4VKH9eZrWjWX7tZMsqgXyQmyHW9In2AcOCro0j8 "Search expand - expanded")
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-
-<h3 align="center">Chip Selector</h3>
-
-  <p style="text-align: center">
-    Chip selector 
-    <br />
-    <a href="https://github.com/raduzoom/search-expand" target="_blank"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://raduzoom.github.io/search-expand/demo.html" target="_blank">View Demo ( GitHub Pages )</a>
-    ·
-    <a href="https://github.com/raduzoom/search-expand/issues" target="_blank">Report Bug</a>
-    ·
-    <a href="https://github.com/raduzoom/search-expand/issues" target="_blank">Request Feature</a>
-  </p>
-</div>
-
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-
-**Chip selector** is a universal tool that helps you display a chip selector to your project. The chip selector has an input where you can filter out results. It can be linked to a form **&lt;input type="checkbox"&gt;** that can be manipulated in real time.
-
-
-![skin-default](https://user-images.githubusercontent.com/58981243/211401746-eb089fdd-044f-4034-916c-458fb9dad221.jpg "Chip Selector")
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-## Getting Started
-Clone the repository and install dependencies:
-
-* npm
-```sh
-  git clone <repo-url>
-  cd search-expand
-  npm install
-```
-Start the development build:
-
-* npm
-```sh
-  npm run dev
-```
-____
-
-- Open src/demo.html in a browser to see the component in action.
-
-
-
-
-## Usage
-1. Initialize via the global function dzs_initDzsChipSelector or by importing the module in TypeScript.
-
-2. Feed options through a form’s checkboxes or via the data-persistentOptions attribute on the root element.
-
-3. Available configuration options include:
-
-- placeholderNoItemsFound – text when filtering yields no results.
-
-- middlewareFilterResults – custom function for filtering.
-
-- viewSkin – choose a skin such as skin-default or skin-flat.
-
-- inputPlaceholderText – placeholder for the filter input.
-
-See the documentation in **README.md** and explore src/demo.html for practical examples.
-
-## Important Files
-src/search-expand/search-expand.ts – main component class.
-
-src/search-expand/config/ – default configuration and class names.
-
-src/search-expand/js_common/ – shared DOM utilities.
-
-src/search-expand/jsinc/ – event listeners and initial DOM setup.
-
-Unit tests – located alongside the source files (*.spec.ts).
-
-## Learning Next
-Examine the interface ChipSelectorOptions in src/search-expand/search-expand.type.ts for available settings.
-
-Review the SCSS themes under src/search-expand/style/skins/ to customize the look and feel.
-
-Explore unit tests in src/search-expand/*.spec.ts to understand expected behavior and how the component handles option updates and autocomplete filtering.
-
-This overview should help newcomers quickly orient themselves in the codebase and know where to look for configuration, demos, and tests.
-### Works With
-
-This component has been made to be versatile, it includes both ES6 and UMD builds ( module / bundled ).
-
-* Vanilla javascript / html via UMD embed
-* [Typescript](https://www.typescriptlang.org/)
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* * example - [Functional](https://stackblitz.com/edit/react-ts-btq4kq?file=App.tsx)
-* [Angular](https://angular.io/)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-Git clone this repository.
-
-### Prerequisites
-
-Install npm - tested with at least version 8.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/raduzoom/search-expand
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. To develop -
-   ```sh
-   npm run dev
-   ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Projects
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-## Code explanation
-
-Can be used as a web component for creating a chip selector. 
-
-Allows the chip selector to feed from multiple origins. The chip selector allows the user to select one or more options from a list of items. It can either get the options from a form element or from the "data-persistentOptions" attribute on the main element. 
-
-The class has various methods for initializing the structure of the component, handling user input, and updating the view. The class also uses several imported functions and constants from other modules for specific tasks such as removing children from a DOM element, getting the computed style of an element, and inserting HTML. 
-
-The class also extends the HTMLElement interface to add a webComponent property and the Window interface to add a global function "dzs_initDzsChipSelector" which can be used to initialize the component on an HTML element.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-<!-- Options -->
-## Options
-<table class="table-for-jsDoc">
-            <thead>
-            <tr>
-              <th><label class=" ">propName</label></th>
-              <th><label class=" ">description</label></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td><span class="prop-name">  placeholderNoItemsFound?:</span> <em> string</em></td>
-              <td class="prop-description"> text for no items found</td>
-            </tr>
-            <tr>
-              <td><span class="prop-name">  middlewareFilterResults?:</span> <em> any</em></td>
-              <td class="prop-description"> include a middleware function like filtering the results</td>
-            </tr>
-            <tr>
-              <td><span class="prop-name">  viewSkin?:</span> <em> string</em></td>
-              <td class="prop-description"> the skin can be "skin-default", "skin-flat" - also needs css file being
-                loaded
-              </td>
-            </tr>
-            <tr>
-              <td><span class="prop-name">  inputPlaceholderText?:</span> <em> string</em></td>
-              <td class="prop-description"> the placeholder for Filter Results ... text</td>
-            </tr>
-            <tr>
-              <td><span class="prop-name">  onUpdateFunction?:</span> <em> (...args: any[]) => any</em></td>
-              <td class="prop-description"> custom function for onUpdate</td>
-            </tr>
-            <tr>
-              <td><span class="prop-name">  viewIsWrapping?:</span> <em> boolean</em></td>
-              <td class="prop-description"> wrap false or true</td>
-            </tr>
-            <tr>
-              <td><span class="prop-name">  persistentOptions?:</span> <em> ChipSelectorItem[]</em></td>
-              <td class="prop-description"> the persistent options</td>
-            </tr>
-            </tbody>
-          </table>
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Flexible Styling
-
-The Search Expand component supports multiple flexible styling approaches to fit different use cases and design requirements.
-
-### 🎨 Available Styling Approaches
-
-#### 1. **Pre-built Skins** (Recommended)
-The component comes with multiple pre-built skins that can be switched dynamically:
-
-- `default` - Classic rounded design
-- `flat` - Modern flat design  
-- `default-dark` - Dark theme variant
-- `flat-dark` - Flat design with dark theme
-
-#### 2. **Dynamic Skin Switching**
-Change skins programmatically at runtime:
-
-```javascript
-// Traditional usage
-const searchExpand = initSearchExpand(element, { viewSkin: 'default' });
-searchExpand.setSkin('flat'); // Switch to flat skin
-
-// Web component usage
-const component = document.querySelector('dzs-search-expand');
-component.setSkin('flat-dark'); // Switch to flat dark skin
+## Installation
+```bash
+npm install search-expand
 ```
 
-#### 3. **CSS Custom Properties**
-Override specific design tokens using CSS variables:
+## Quick start
 
-```css
-.my-search-container {
-    --search-expand-primary-color: #e74c3c;
-    --search-expand-border-radius: 20px;
-    --search-expand-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
-    --search-expand-background: #f8f9fa;
-    --search-expand-text-color: #333;
-}
-```
+### 1) Programmatic (TypeScript/JavaScript)
+```ts
+import { initSearchExpand } from 'search-expand';
 
-### 🚀 Usage Patterns
-
-#### **TypeScript/JavaScript Import**
-
-```typescript
-import { initSearchExpand, getAvailableSkins } from 'search-expand';
-
-// Initialize with specific skin
-const searchExpand = initSearchExpand(element, {
-    viewSkin: 'flat',
-    persistentOptions: [...]
+const host = document.getElementById('search-host') as HTMLElement;
+const instance = initSearchExpand(host, {
+  viewSkin: 'default',
+  inputPlaceholderText: 'Filter results...',
+  persistentOptions: [
+    { htmlContent: 'Apple', value: 'apple', currentStatus: 'unchecked' },
+    { htmlContent: 'Orange', value: 'orange', currentStatus: 'checked' },
+  ],
+  onSubmitSearch: (q) => console.log('Submit:', q),
 });
 
-// Get available skins
-console.log(getAvailableSkins()); // ['default', 'flat', 'default-dark', 'flat-dark']
-
-// Change skin dynamically
-searchExpand.setSkin('default-dark');
+// Note: include base CSS in your page
+// <link rel="stylesheet" href="/dist-webpack/dzs-search-expand.css" />
 ```
 
-#### **Web Component**
-
+### 2) Web Component
 ```html
-<!-- HTML with data attributes -->
-<dzs-search-expand 
-    data-skin="flat"
-    data-persistentOptions='[...]'>
+<!-- Include UMD or initialize web components in your app code -->
+<dzs-search-expand
+  data-skin="default"
+  data-persistentOptions='[
+    {"htmlContent":"Apple","value":"apple","currentStatus":"unchecked"},
+    {"htmlContent":"Orange","value":"orange","currentStatus":"checked"}
+  ]'>
 </dzs-search-expand>
 
 <script>
-// JavaScript to change skin
-const component = document.querySelector('dzs-search-expand');
-component.setSkin('default-dark');
+  // Optional: change skin dynamically
+  // const el = document.querySelector('dzs-search-expand');
+  // el.setSkin('flat-dark');
 </script>
 ```
 
-#### **UMD Module (Browser)**
+Initialize custom element (only once per page) if you import modules directly:
+```ts
+import { initWebComponents, configureSkinLoading } from 'search-expand';
+configureSkinLoading({ basePath: '/dist/style/skins/' });
+initWebComponents();
+```
 
+### 3) UMD (Browser)
 ```html
 <script src="dist-webpack/search-expand.js"></script>
 <script>
-// Access via global variable
-const searchExpand = SearchExpand.initSearchExpand(element, {
-    viewSkin: 'flat'
-});
+  // Optional: configure skin path
+  SearchExpand.configureSkinLoading({ basePath: '/dist/style/skins/' });
 
-// Change skin
-searchExpand.setSkin('default-dark');
+  const host = document.getElementById('search-host');
+  const instance = SearchExpand.initSearchExpand(host, { viewSkin: 'default' });
+  // instance.setSkin('flat');
+
+  // Or use the web component
+  SearchExpand.initWebComponents();
 </script>
 ```
 
-### 🎯 Styling Strategies
+## Options
+Type: `SearchExpandOptions`
 
-#### **Strategy 1: Skin-Based Theming**
-Use pre-built skins for consistent design across your application:
+- `placeholderNoItemsFound?`: string – Text when filtering yields no results
+- `inputPlaceholderText?`: string – Placeholder for the input
+- `middlewareFilterResults?`: any – Hook to post-process filtered results
+- `viewSkin?`: string – One of `default | flat | default-dark | flat-dark`
+- `viewIsWrapping?`: boolean – Control layout wrapping
+- `persistentOptions?`: `ChipSelectorItem[]` – Seed options
+- `onUpdateFunction?`: `(items: ChipSelectorItem[]) => any` – Called on updates
+- `onSubmitSearch?`: `(query: string) => void | Promise<void>` – Called on icon click or Enter
 
-```javascript
-// Initialize all components with the same skin
-const components = document.querySelectorAll('.search-component');
-components.forEach(element => {
-    initSearchExpand(element, { viewSkin: 'flat' });
-});
-```
+Types are exported from `search-expand`: `SearchExpandOptions`, `ChipSelectorItem`, `currentStatusType`.
 
-#### **Strategy 2: Contextual Styling**
-Use different skins based on context:
+## Skins and styling
 
-```javascript
-// Light theme for main content
-initSearchExpand(mainElement, { viewSkin: 'default' });
+### Available skins
+- `default`, `flat`, `default-dark`, `flat-dark`
 
-// Dark theme for sidebar
-initSearchExpand(sidebarElement, { viewSkin: 'default-dark' });
-```
+Skin CSS files live under `dist/style/skins/`. If you use skins, call `configureSkinLoading({ basePath: '/dist/style/skins/' })` so the runtime can lazy-load the CSS.
 
-#### **Strategy 3: Custom Branding**
-Combine skins with CSS custom properties:
-
+### CSS variables
+Tweak visuals via CSS custom properties:
 ```css
-.branded-search {
-    --search-expand-primary-color: var(--brand-primary);
-    --search-expand-secondary-color: var(--brand-secondary);
-    --search-expand-border-radius: var(--brand-border-radius);
+:root {
+  --search-expand-icon-size: 24px;
+  --search-expand-wrapper-padding: 8px;
+  --search-expand-input-font-size: 14px;
+  --search-expand-color-icon: #fff;
+  --search-expand-color-icon-hover: #dadada;
+  --search-expand-color-wrapper-bg: #222;
+  --search-expand-color-wrapper-bg-hover: var(--search-expand-color-wrapper-bg);
+  --search-expand-color-text: #fff;
+  --search-expand-expand-w: 180px;
 }
 ```
+See `FLEXIBLE_STYLING.md` for more strategies.
 
-### 📱 Responsive Design
+## Development
+```bash
+# install deps
+npm install
 
-The component automatically adapts to different screen sizes. You can enhance this with custom breakpoints:
+# dev build (watch)
+npm run dev
 
-```css
-/* Mobile-first approach */
-.search-expand-mobile {
-    --search-expand-width: 100%;
-    --search-expand-font-size: 16px;
-}
+# run tests
+npm test
 
-/* Tablet */
-@media (min-width: 768px) {
-    .search-expand-tablet {
-        --search-expand-width: 300px;
-        --search-expand-font-size: 14px;
-    }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-    .search-expand-desktop {
-        --search-expand-width: 400px;
-        --search-expand-font-size: 16px;
-    }
-}
+# production build (webpack + types + rollup)
+npm run build
 ```
 
-### 🎨 Design System Integration
+Useful demo pages:
+- `src/demo.html`
+- `src/usage-examples.html`
+- `src/dynamic-skin-example.html`
 
-#### **CSS Custom Properties Reference**
-
-| Property | Default | Description |
-|----------|---------|-------------|
-| `--search-expand-primary-color` | `#007bff` | Primary brand color |
-| `--search-expand-secondary-color` | `#6c757d` | Secondary color |
-| `--search-expand-border-radius` | `8px` | Border radius |
-| `--search-expand-shadow` | `0 2px 4px rgba(0,0,0,0.1)` | Box shadow |
-| `--search-expand-background` | `#ffffff` | Background color |
-| `--search-expand-text-color` | `#333333` | Text color |
-| `--search-expand-border-color` | `#dee2e6` | Border color |
-| `--search-expand-hover-color` | `#f8f9fa` | Hover state color |
-
-#### **Integration with Design Systems**
-
-```css
-/* Tailwind CSS */
-.search-expand-tailwind {
-    --search-expand-primary-color: theme('colors.blue.500');
-    --search-expand-border-radius: theme('borderRadius.lg');
-    --search-expand-shadow: theme('boxShadow.lg');
-}
-
-/* Material Design */
-.search-expand-material {
-    --search-expand-primary-color: #2196f3;
-    --search-expand-border-radius: 4px;
-    --search-expand-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
-}
-
-/* Bootstrap */
-.search-expand-bootstrap {
-    --search-expand-primary-color: var(--bs-primary);
-    --search-expand-border-radius: var(--bs-border-radius);
-    --search-expand-shadow: var(--bs-box-shadow);
-}
-```
-
-### 🔍 Best Practices
-
-1. **Consistency**: Use the same skin across related components
-2. **Performance**: Pre-load skins if switching frequently
-3. **Accessibility**: Ensure sufficient color contrast
-4. **Testing**: Test all skins across different devices and browsers
-5. **Documentation**: Document custom skins and their use cases
-
-### 🚀 Getting Started with Styling
-
-1. **Choose your usage pattern** (TypeScript, Web Component, or UMD)
-2. **Select a base skin** (default, flat, or dark variants)
-3. **Customize with CSS variables** if needed
-4. **Test across different contexts** and screen sizes
-5. **Document your styling decisions** for your team
-
-For more detailed styling information, see [FLEXIBLE_STYLING.md](FLEXIBLE_STYLING.md).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [] Add Additional Templates w/ Examples
-
-See the [open issues](https://github.com/raduzoom/search-expand/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-<!-- CONTRIBUTING -->
-## Dev
-
-
-| <div style="width:80px">ID</div> | Description                                   |
-|----------------------------------|-----------------------------------------------|
-| dist                             | Rollup outputs here umd files, es files etc.. |
-| dist-webpack                     | For development, only umd files               |
-
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
 ## License
+MIT OR Apache-2.0. See `LICENSE.txt`.
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@ZoomItFlash](https://twitter.com/ZoomItFlash) - email@example.com
-
-Project Link: [https://github.com/raduzoom/search-expand#readme](https://github.com/raduzoom/search-expand#readme)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+## Links
+- Repo: `https://github.com/raduzoom/search-expand`
+- Issues: `https://github.com/raduzoom/search-expand/issues`
 
 
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/raduzoom/search-expand.svg?style=for-the-badge
-[contributors-url]: https://github.com/raduzoom/search-expand/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/raduzoom/search-expand.svg?style=for-the-badge
-[forks-url]: https://github.com/raduzoom/search-expand/network/members
-[stars-shield]: https://img.shields.io/github/stars/raduzoom/search-expand.svg?style=for-the-badge
-[stars-url]: https://github.com/raduzoom/search-expand/stargazers
-[issues-shield]: https://img.shields.io/github/issues/raduzoom/search-expand.svg?style=for-the-badge
-[issues-url]: https://github.com/raduzoom/search-expand/issues
-[license-shield]: https://img.shields.io/github/license/raduzoom/search-expand.svg?style=for-the-badge
-[license-url]: https://github.com/raduzoom/search-expand/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/radu-hulubas-809404222/
-[product-screenshot]: images/screenshot.png
