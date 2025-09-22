@@ -1,4 +1,4 @@
-## Search Expand
+## Search Expand - pr1
 
 Compact, animated search input that expands on focus/hover. Ships as a Web Component and a class-based API, with dynamic skin loading and CSS variables for flexible theming.
 
