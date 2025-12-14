@@ -1,0 +1,40 @@
+
+.search-expand--wrapper {
+
+  transition: width 0.3s ease-out;
+
+
+  >&--inner{
+
+    transition: background-color 0.3s ease-out;
+  }
+
+  .search-expand--icon{
+    transition: background-color 0.3s ease-out;
+  }
+
+  &:hover,
+  &:focus-within {
+    width: var(--search-expand-expand-w);
+
+    >.search-expand--wrapper--inner{
+      background-color: var(--search-expand-color-wrapper-bg-hover);
+    }
+    .search-expand--icon{
+      background-color: var(--search-expand-color-icon-hover);
+    }
+  }
+}
+
+
+
+
+// -- the input
+input.search-expand--input {
+  transition: width 0.2s ease 0.2s;
+
+  .search-expand--wrapper:hover &,
+  .search-expand--wrapper:focus-within & {
+    width: 100%;
+  }
+}

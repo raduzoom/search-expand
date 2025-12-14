@@ -1,6 +1,6 @@
 @import "TOKENS";
 
-:root{
+:root {
   --search-expand-icon-size: 24px;
   --search-expand-wrapper-padding: 8px;
   --search-expand-input-font-size: 14px;
@@ -24,18 +24,19 @@
   font-family: sans-serif;
 }
 
-.search-expand{
+.search-expand {
 
-  &.inline-block{
+  &.inline-block {
     display: inline-block;
   }
 }
+
 .search-expand--wrapper {
 
   width: var(--search-expand-total-size);
   height: var(--search-expand-total-size);
-  transition: width 0.3s ease-out;
-  >&--inner{
+
+  >&--inner {
 
     display: flex;
     align-items: center;
@@ -45,27 +46,14 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     cursor: pointer;
-    transition: background-color 0.3s ease-out;
 
     height: 100%;
   }
 
-  .search-expand--icon{
-    transition: background-color 0.3s ease-out;
-  }
-  &:hover,
-  &:focus-within {
-    width: var(--search-expand-expand-w);
-
-    >.search-expand--wrapper--inner{
-      background-color: var(--search-expand-color-wrapper-bg-hover);
-    }
-    .search-expand--icon{
-      background-color: var(--search-expand-color-icon-hover);
-    }
-  }
 
 }
+
+@import "style/view-animation";
 
 .search-expand--icon {
   width: var(--search-expand-icon-size);
@@ -80,8 +68,7 @@
   background-color: var(--search-expand-color-icon);
 
   /* Use the SVG as mask */
-  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M464,428,339.92,303.9a160.48,160.48,0,0,0,30.72-94.58C370.64,120.37,298.27,48,209.32,48S48,120.37,48,209.32s72.37,161.32,161.32,161.32a160.48,160.48,0,0,0,94.58-30.72L428,464ZM209.32,319.69A110.38,110.38,0,1,1,319.69,209.32,110.5,110.5,0,0,1,209.32,319.69Z"/></svg>')
-  center / contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M464,428,339.92,303.9a160.48,160.48,0,0,0,30.72-94.58C370.64,120.37,298.27,48,209.32,48S48,120.37,48,209.32s72.37,161.32,161.32,161.32a160.48,160.48,0,0,0,94.58-30.72L428,464ZM209.32,319.69A110.38,110.38,0,1,1,319.69,209.32,110.5,110.5,0,0,1,209.32,319.69Z"/></svg>') center / contain no-repeat;
 }
 
 
@@ -96,12 +83,7 @@ input.search-expand--input {
   width: 0;
 
   color: var(--search-expand-color-text);
-  transition: width 0.2s ease 0.2s;
 
-  .search-expand--wrapper:hover &,
-  .search-expand--wrapper:focus-within & {
-    width: 100%;
-  }
 }
 
 
