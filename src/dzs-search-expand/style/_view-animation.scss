@@ -1,16 +1,15 @@
 
 .search-expand--wrapper {
 
-  transition: width 0.3s ease-out;
 
+  transition: width var(--search-expand-view--duration) ease-out;
 
   >&--inner{
-
-    transition: background-color 0.3s ease-out;
+    transition: background-color var(--search-expand-view--duration) ease-out;
   }
 
   .search-expand--icon{
-    transition: background-color 0.3s ease-out;
+    transition: background-color var(--search-expand-view--duration) ease-out;
   }
 
   &:hover,
@@ -24,6 +23,38 @@
       background-color: var(--search-expand-color-icon-hover);
     }
   }
+
+
+
+}
+
+.search-expand{
+
+  // todo: move to separate file
+  &.mode-view--absolute{
+
+
+    .search-expand--wrapper {
+
+    /* Wrapper stays fixed-size to avoid layout reflow loops. */
+    transition: none;
+
+
+    >&--inner{
+      transition: max-width var(--search-expand-view--duration) ease-out, background-color var(--search-expand-view--duration) ease-out;
+    }
+
+
+    &:hover,
+    &:focus-within {
+      width: var(--search-expand-expand-w);
+
+      > .search-expand--wrapper--inner {
+        max-width: var(--search-expand-expand-w);
+      }
+    }
+    }
+  }
 }
 
 
@@ -31,7 +62,7 @@
 
 // -- the input
 input.search-expand--input {
-  transition: width 0.2s ease 0.2s;
+  transition: width var(--search-expand-view--duration) ease-out;
 
   .search-expand--wrapper:hover &,
   .search-expand--wrapper:focus-within & {

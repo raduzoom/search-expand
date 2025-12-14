@@ -34,13 +34,41 @@
           <h1>Dark themes.</h1>
           <br>
 
-          <h4>Skin default - theme dark</h4>
+          <h3>Skin default - theme dark</h3>
 
           <div>
 
           <div class="search-expand auto-init inline-block">
           </div>
             text after
+          </div>
+
+
+
+
+
+          <h3>Align Right</h3>
+
+          <div style="text-align: right">
+
+            text before
+            <div class="search-expand auto-init inline-block">
+            </div>
+          </div>
+
+          <h3>Align Right - Position Absolute</h3>
+
+          <div style="text-align: right">
+
+            text before
+            <div class="search-expand auto-init inline-block mode-view--absolute">
+            </div>
+          </div>
+          <br>
+          <h3>Inside Flex - Center</h3>
+
+          <div style="display: flex; justify-content: center;">
+            <div class="search-expand auto-init inline-block"></div>
           </div>
         </div>
         <br>
@@ -98,8 +126,9 @@ var require = () => {
     console.log('doc ready');
 
 
+    document.querySelectorAll('.search-expand.auto-init').forEach((el) => {
 
-      window.dzs_initDzsSearchExpand(document.querySelector('.search-expand.auto-init'), {
+      window.dzs_initDzsSearchExpand(el, {
         /**
          *
          * @param {ChipSelectorItem[]} allOptions
@@ -112,6 +141,10 @@ var require = () => {
           console.log('onSubmitSearch()', { query });
         }
       })
+
+
+    })
+
 
 
   })

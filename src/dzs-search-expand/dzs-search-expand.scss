@@ -10,6 +10,7 @@
   --search-expand-color-wrapper-bg-hover: var(--search-expand-color-wrapper-bg);
   --search-expand-color-text: #fff;
   --search-expand-expand-w: 180px;
+  --search-expand-view--duration: 0.3s;
 
 
   /* sum of icon size + padding */
@@ -35,7 +36,6 @@
 
   width: var(--search-expand-total-size);
   height: var(--search-expand-total-size);
-
   >&--inner {
 
     display: flex;
@@ -51,8 +51,39 @@
   }
 
 
+
 }
 
+
+.search-expand {
+  // todo: move to separate file
+  &.mode-view--absolute {
+    width: var(--search-expand-icon-size);
+    height: var(--search-expand-icon-size);
+
+
+    .search-expand--wrapper {
+
+
+      position: relative;
+      display: inline-block;
+
+
+      >&--inner {
+
+        box-sizing: border-box;
+
+        /* Prevent hover/focus expansion from reflowing surrounding layout:
+           keep wrapper fixed-size and animate this inner overlay instead. */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--search-expand-expand-w);
+        max-width: var(--search-expand-total-size);
+      }
+    }
+  }
+}
 @import "style/view-animation";
 
 .search-expand--icon {

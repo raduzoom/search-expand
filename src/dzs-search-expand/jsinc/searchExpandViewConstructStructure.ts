@@ -14,7 +14,7 @@ export function viewChipSelectorChipItemStructure(item: ChipSelectorItem) {
 export function searchExpandView_initStructure(selfInstance: DzsSearchExpand) {
 
 
-  console.log('selfInstance.$elem_ 23-' , selfInstance.$elem_);
+  console.log('selfInstance.$elem_ 234-' , selfInstance.$elem_);
   if (!selfInstance.$elem_.querySelector('.search-expand--wrapper')) {
 
     const placeholder = selfInstance.searchExpandOptions.inputPlaceholderText || 'Search...';
