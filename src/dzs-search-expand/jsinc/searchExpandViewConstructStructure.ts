@@ -1,6 +1,5 @@
 import {DzsSearchExpand} from "../dzs-search-expand";
 import {insertHtml} from "../js_common/dzs_helpers";
-import {DZS_CHIP_SELECTOR_CSS_SELECTOR_OVERFLOW_TOOLTIP_CONTENT} from "../config/dzs-search-expand.config";
 import {ChipSelectorItem} from "../dzs-search-expand.type";
 
 export function viewChipSelectorChipItemStructure(item: ChipSelectorItem) {
@@ -15,7 +14,7 @@ export function viewChipSelectorChipItemStructure(item: ChipSelectorItem) {
 export function searchExpandView_initStructure(selfInstance: DzsSearchExpand) {
 
 
-  console.log('selfInstance.$elem_ -' , selfInstance.$elem_);
+  console.log('selfInstance.$elem_ 23-' , selfInstance.$elem_);
   if (!selfInstance.$elem_.querySelector('.search-expand--wrapper')) {
 
     const placeholder = selfInstance.searchExpandOptions.inputPlaceholderText || 'Search...';
