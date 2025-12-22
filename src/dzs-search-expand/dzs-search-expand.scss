@@ -11,6 +11,8 @@
   --search-expand-color-text: #fff;
   --search-expand-expand-w: 180px;
   --search-expand-view--duration: 0.3s;
+  /* Hover delay to prevent flashing on rapid mouse movement */
+  --search-expand-hover-delay: 0.05s;
 
 
   /* sum of icon size + padding */
@@ -36,6 +38,13 @@
 
   width: var(--search-expand-total-size);
   height: var(--search-expand-total-size);
+  /* Prevent layout shifts during width changes */
+  position: relative;
+  display: inline-block;
+  /* Optimize rendering during animation */
+  will-change: width;
+  backface-visibility: hidden;
+  
   >&--inner {
 
     display: flex;

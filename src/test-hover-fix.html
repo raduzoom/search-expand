@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Expand - Hover Fix Test</title>
+  <link rel="stylesheet" href="../dist-webpack/dzs-search-expand.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+    
+    .test-section {
+      background: white;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    .description {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .test-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    
+    .status {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    
+    .status.good {
+      background: #d4edda;
+      color: #155724;
+    }
+    
+    .status.bad {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    
+    code {
+      background: #e9ecef;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Search Expand - Hover Flashing Fix Test</h1>
+  
+  <div class="test-section">
+    <h2>Test 1: Default Mode (With Hover Delay Fix)</h2>
+    <div class="description">
+      This uses the default expansion mode with the built-in hover delay (0.05s).
+      <br><strong>Expected:</strong> Should expand smoothly without flashing.
+    </div>
+    <div class="test-container">
+      <div class="search-expand auto-init inline-block" id="test1"></div>
+      <span class="status good">✓ Hover delay active</span>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 2: Absolute Mode (Recommended)</h2>
+    <div class="description">
+      This uses <code>mode-view--absolute</code> class for maximum stability.
+      <br><strong>Expected:</strong> Should expand smoothly with no layout shift.
+    </div>
+    <div class="test-container">
+      <div class="search-expand auto-init inline-block mode-view--absolute" id="test2"></div>
+      <span class="status good">✓ Absolute positioning</span>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 3: Increased Delay (0.15s)</h2>
+    <div class="description">
+      This uses a longer hover delay for extra stability.
+      <br><strong>Expected:</strong> Should expand after a slightly longer pause.
+    </div>
+    <div class="test-container">
+      <div class="search-expand auto-init inline-block test3-custom" id="test3"></div>
+      <span class="status good">✓ Extended delay</span>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 4: No Delay (Potential Issue)</h2>
+    <div class="description">
+      This removes the hover delay completely.
+      <br><strong>Expected:</strong> May flash in some layouts (for comparison).
+    </div>
+    <div class="test-container">
+      <div class="search-expand auto-init inline-block test4-no-delay" id="test4"></div>
+      <span class="status bad">⚠ No protection</span>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 5: In Tight Layout (Real-world scenario)</h2>
+    <div class="description">
+      This simulates a navigation menu with limited space.
+      <br><strong>Expected:</strong> Absolute mode should prevent any issues.
+    </div>
+    <div class="test-container" style="justify-content: space-between; width: 300px;">
+      <span>Menu Item</span>
+      <div class="search-expand auto-init inline-block mode-view--absolute" id="test5"></div>
+    </div>
+  </div>
+
+  <style>
+    /* Custom delay for test 3 */
+    .test3-custom {
+      --search-expand-hover-delay: 0.15s;
+    }
+    
+    /* No delay for test 4 */
+    .test4-no-delay {
+      --search-expand-hover-delay: 0s;
+    }
+  </style>
+
+  <script src="../dist-webpack/search-expand.js"></script>
+  <script>
+    // Initialize all search expand instances
+    document.querySelectorAll('.search-expand.auto-init').forEach((element) => {
+      window.dzs_initDzsSearchExpand(element, {
+        inputPlaceholderText: 'Search...',
+        onSubmitSearch: (query) => {
+          console.log('Search submitted:', query);
+          alert('Search: ' + query);
+        }
+      });
+    });
+
+    // Add hover event listeners for debugging
+    document.querySelectorAll('.search-expand--wrapper').forEach((wrapper, index) => {
+      let hoverCount = 0;
+      let lastHoverTime = 0;
+      
+      wrapper.addEventListener('mouseenter', () => {
+        const now = Date.now();
+        const timeSinceLastHover = now - lastHoverTime;
+        lastHoverTime = now;
+        hoverCount++;
+        
+        // Detect rapid hover events (potential flashing)
+        if (timeSinceLastHover < 100 && hoverCount > 2) {
+          console.warn(`Test ${index + 1}: Rapid hover detected! (${timeSinceLastHover}ms)`);
+        }
+      });
+      
+      wrapper.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+          hoverCount = 0;
+        }, 500);
+      });
+    });
+
+    console.log('Hover fix test page loaded. Move your mouse over the search icons to test.');
+  </script>
+</body>
+</html>
+

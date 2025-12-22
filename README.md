@@ -120,9 +120,25 @@ Tweak visuals via CSS custom properties:
   --search-expand-color-wrapper-bg-hover: var(--search-expand-color-wrapper-bg);
   --search-expand-color-text: #fff;
   --search-expand-expand-w: 180px;
+  --search-expand-hover-delay: 0.05s; /* Prevents hover flashing */
 }
 ```
 See `FLEXIBLE_STYLING.md` for more strategies.
+
+### Preventing hover flashing
+If you experience rapid hover/unhover flashing, use one of these solutions:
+
+**Option 1:** Add `mode-view--absolute` class (recommended):
+```html
+<div class="search-expand auto-init mode-view--absolute"></div>
+```
+
+**Option 2:** Increase the hover delay:
+```css
+.search-expand { --search-expand-hover-delay: 0.1s; }
+```
+
+See `HOVER_FIX_GUIDE.md` for detailed solutions.
 
 ## Development
 ```bash

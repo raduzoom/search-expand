@@ -3,6 +3,8 @@
 
 
   transition: width var(--search-expand-view--duration) ease-out;
+  /* Add a small delay before starting the transition to prevent hover flashing */
+  transition-delay: var(--search-expand-hover-delay);
 
   >&--inner{
     transition: background-color var(--search-expand-view--duration) ease-out;
@@ -15,6 +17,8 @@
   &:hover,
   &:focus-within {
     width: var(--search-expand-expand-w);
+    /* Remove delay on hover to make it feel responsive */
+    transition-delay: 0s;
 
     >.search-expand--wrapper--inner{
       background-color: var(--search-expand-color-wrapper-bg-hover);
