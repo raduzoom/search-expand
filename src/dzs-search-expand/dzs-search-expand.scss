@@ -44,19 +44,30 @@
   /* Optimize rendering during animation */
   will-change: width;
   backface-visibility: hidden;
-  
+
   >&--inner {
 
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    background-color: var(--search-expand-color-wrapper-bg);
-    border-radius: 999px;
+    position: relative;
     padding: var(--search-expand-wrapper-padding);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     cursor: pointer;
-
     height: 100%;
+
+    /* Background on ::before so it maintains proper rounded shape */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--search-expand-color-wrapper-bg);
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
   }
 
 
@@ -100,6 +111,8 @@
   height: var(--search-expand-icon-size);
   margin-right: 8px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 1;
   //background: url('data:image/svg+xml;utf8,<svg fill="currentColor" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M464,428,339.92,303.9a160.48,160.48,0,0,0,30.72-94.58C370.64,120.37,298.27,48,209.32,48S48,120.37,48,209.32s72.37,161.32,161.32,161.32a160.48,160.48,0,0,0,94.58-30.72L428,464ZM209.32,319.69A110.38,110.38,0,1,1,319.69,209.32,110.5,110.5,0,0,1,209.32,319.69Z"/></svg>')
   //center/contain no-repeat;
 
@@ -121,6 +134,8 @@ input.search-expand--input {
   background: transparent;
   opacity: 1;
   width: 0;
+  position: relative;
+  z-index: 1;
 
   color: var(--search-expand-color-text);
 

@@ -6,7 +6,7 @@
   /* Add a small delay before starting the transition to prevent hover flashing */
   transition-delay: var(--search-expand-hover-delay);
 
-  >&--inner{
+  >&--inner::before{
     transition: background-color var(--search-expand-view--duration) ease-out;
   }
 
@@ -20,7 +20,7 @@
     /* Remove delay on hover to make it feel responsive */
     transition-delay: 0s;
 
-    >.search-expand--wrapper--inner{
+    >.search-expand--wrapper--inner::before{
       background-color: var(--search-expand-color-wrapper-bg-hover);
     }
     .search-expand--icon{
@@ -45,7 +45,11 @@
 
 
     >&--inner{
-      transition: max-width var(--search-expand-view--duration) ease-out, background-color var(--search-expand-view--duration) ease-out;
+      transition: max-width var(--search-expand-view--duration) ease-out;
+      
+      &::before {
+        transition: background-color var(--search-expand-view--duration) ease-out;
+      }
     }
 
 
